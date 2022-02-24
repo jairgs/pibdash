@@ -11,11 +11,12 @@ AreaGeo='0700'
 Recientes='false' #true= ultimo valor; false= serie completa
 FuenteDatos='BIE' #BISE or BIE 
 Version='2.0'
-Token='5a9fe7dc-cc4a-77eb-e5cf-f2153a7c41bc'
+
 Formato='json'
 
-def getdata(IdIndicador, Idioma='es', AreaGeo='0700', Recientes='false', FuenteDatos='BIE', Version='2.0', Token=Token, Formato='json'):
+def getdata(IdIndicador, Token, Idioma='es', AreaGeo='0700', Recientes='false', FuenteDatos='BIE', Version='2.0', Formato='json'):
     url='https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/INDICATOR/'+IdIndicador+'/'+Idioma+'/'+AreaGeo+'/'+Recientes+'/'+FuenteDatos+'/'+Version+'/'+Token+'?type='+Formato
+    print(url)
     response= requests.get(url)
     if response.status_code==200:
         content= json.loads(response.content)
@@ -39,7 +40,7 @@ def getdata(IdIndicador, Idioma='es', AreaGeo='0700', Recientes='false', FuenteD
         return pd.DataFrame(obs[0]) #only one element per request
         
 
-    else: print('bad request:'+response)
+    else: print('bad request:'+response.text)
 
 if __name__=='__main__':
     print(getdata(IdIndicador))
