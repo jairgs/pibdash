@@ -25,5 +25,5 @@ setuptools==49.2.1
 six==1.15.0
 tenacity==8.0.1
 urllib3==1.26.8
-Werkzeug==2.0.3
+Werkzeug==2.2.3
 wheel==0.33.1
